@@ -1,0 +1,394 @@
+{% extends 'base_cz.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+<title>Milan Holidays – туристические трансферы в любой уголок Чехии</title>
+{% endblock title %}
+
+{% block links %}
+<!-- <description>Milan Holidays – это туристические трансферы в любой уголок Милана и по северу Италии, а также в соседние регионы Франции, Швейцарии и Австрии.</description> -->
+<link href='{% static "css/gaia.css" %}' rel="stylesheet"/>
+<link rel="stylesheet" href='{% static "css/index/owl.carousel.css" %}'>
+<!-- <link rel="stylesheet" href='{% static "css/index/owl.theme.default.css" %}'> -->
+<link rel="stylesheet" href='{% static "css/index/owl-carousel.css" %}'>
+{% endblock links %}
+
+{% block content %}
+    <div class="section section-header">
+        <div class="parallax filter filter-color-red">
+            <div class="image"style="background-image: url({% static 'img/Czech/index/header-1.jpg' %});">
+            </div>
+            <div class="container">
+                <div class="content">
+                    <div class="title-area" >
+                        <p>Milan Holidays</p>
+                        <h1 class="title-modern">{% trans "Ваш ход событий" %}</h1>
+                        <h3>{% trans "Вне зависимости от времени суток и дня недели Вы будете там, где задумали быть" %}</h3>
+                        <div class="separator line-separator">♦</div>
+                    </div>
+
+                    <div class="search_transfer title-area">
+                      <div style="height: 10%;">
+                        <h2 class="" style=" height: 100%; margin: 0 !important;">
+                          {% trans "Найти трансфер" %}
+                        </h2>
+                      </div>
+                      <div class="search_city">
+                        <div class="searchbox">
+                          <div class="placesfrom form-item">
+                            <input class="textbox" type="text" name="id_from_transfer" id="id_from_transfer" value="" placeholder="" autocomplete="on" required>
+                            <input type="hidden" name="" value="undefined" name="id_from_transfer_lng" id="id_from_transfer_lng" autocomplete="on" required>
+                            <input type="hidden" name="" value="" name="id_from_transfer_lng_id" id="id_from_transfer_lng_id" autocomplete="on" required>
+                            <label class="form-label" for="pointfrom" id="pointfrom_label">
+                              {% trans "Откуда (адрес, аэропорт, отель...)" %}
+                            </label>
+                          </div>
+                        </div>
+                        <div class="button-get-started btn btn-danger btn-fill btn-lg replace" style="padding: 20px 20px; font-size: 20px; width: 30px; height: 30px; display: flex; justify-content: center;
+                         align-items: center; " onclick="changeDir();">
+                          <i class="pe-7s-refresh-2"></i>
+                          <!-- <i class="fas fa-sync-alt" style="width: 30px; height: 30px;"></i> -->
+                        </div>
+                        <div class="searchbox searchbox_second">
+                          <div class="placesfrom form-item">
+                            <input class="textbox" type="text" name="id_to_transfer" id="id_to_transfer" value="" placeholder="" autocomplete="on" required>
+                            <input type="hidden" name="" value="" name="id_to_transfer_lng" id="id_to_transfer_lng" autocomplete="on" required>
+                            <input type="hidden" name="" value="" name="id_to_transfer_lng_id" id="id_to_transfer_lng_id" autocomplete="on" required>
+                            <label class="form-label" for="pointto" id="pointto_label">
+                              {% trans "Куда (адрес, аэропорт, отель...)" %}
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="button-get-started  search_citys">
+                        <button type="submit" value="Найти" id="" target="_blank" class="btn btn-danger btn-fill btn-lg" OnClick="takeValue(); func('{% url "orders" %}'); ym(56779309, 'reachGoal', 'search'); return true;">
+                            {% trans "Найти" %}
+                        </button>
+                      </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="services" class="section">
+        <div class="container">
+            <div class="row">
+
+            <div class="row">
+                <div class="title-area">
+                    <h2>{% trans "НЕСКОЛЬКО СЛОВ О СЕРВИСЕ" %}</h2>
+                    <!-- <div id="map" style="width: 600px; height: 600px;">
+
+                    </div> -->
+                    <div class="separator separator-danger">✻</div>
+                    <p class="description">{% trans "Туристические трансферы с Milan Holidays в любой уголок Праги и по всей Чехии, а также в соседние регионы" %}<br></p>
+ <!-- <ul class="description" style="text-align: left;">
+    <li>это комфортное перемещение из аэропорта, вокзала или между городами</li>
+    <li>это мгновенный отклик на любой Ваш запрос и существенная экономия времени</li>
+    <li>это заранее поданный автомобиль, подготовленный именно для Вас</li>
+  </ul> -->
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="info-icon">
+                        <div class="icon text-danger">
+                            <i class="pe-7s-map-2"></i>
+                        </div>
+                        <h3>{% trans "Трансфер" %}</h3>
+                        <p class="description">{% trans "Это комфортное перемещение из аэропорта, вокзала или между городами." %}</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-icon">
+                        <div class="icon text-danger">
+                            <i class="pe-7s-timer"></i>
+                        </div>
+                        <h3>{% trans "Время" %}</h3>
+                        <p class="description">{% trans "Это мгновенный отклик на любой Ваш запрос и существенная экономия времени." %}</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-icon">
+                        <div class="icon text-danger">
+                            <i class="pe-7s-users"></i>
+                        </div>
+                        <h3>{% trans "Ответственность" %}</h3>
+                        <p class="description">{% trans "Это заранее поданный автомобиль, подготовленный именно для Вас." %}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="title-area">
+              <br>
+              <br>
+              <p class="description">{% trans "Другими словами, Milan Holidays - это быстрый и комфортный способ оказаться в том месте, куда Вас позвала душа." %}</p>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="section section-small section-get-started">
+        <div class="parallax filter">
+            <div class="container" style=" margin: 5vh auto">
+                <div class="title-area">
+                    <h2 class="text-white">{% trans "Наш парк автомобилей" %}</h2>
+                    <div class="separator line-separator">♦</div>
+                </div>
+
+                <!-- {% for Car in car_class %}
+                <div type="button" class="choose_car" onclick="selectEdit(this.id)" id="{{Car.id}}">
+                  <div class="image_car">
+                    <div style="height: 85px;  width: 212px;">
+                      <img src="{{Car.pictureCar.url}}" style="height: 85px;  width: 212px;">
+                    </div>
+                    <p class="models_car">{{Car.modelsOfCars}}</p>
+                  </div>
+                  <div class="info_car">
+                    <h3 class="text-bold">{{Car.classOfCars}}</h3>
+                    <h6>{{Car.infoOfClass}}</h6>
+                    <div class="car_capacity">
+                      <div class="car_capacity_items"><span class="fa fa-user"></span><h6>{{Car.maxPassenger}} пассажира</h6></div>
+                      <div class="car_capacity_items"><span class="fa fa-suitcase "></span><h6>{{Car.maxBags}} багажных места</h6></div>
+                    </div>
+                  </div>
+                  <div class="price">
+                    <h5>От €{{Car.priceOfTransfer}}</h5>
+                  </div>
+                </div>
+                {% endfor %} -->
+
+
+                <div class="owl-carousel owl-theme" id="owl-carousel">
+                  {% for Car in car_class %}
+                  <div class="carousel-item card card-member"  style="min-height: 315px;">
+
+                      <!-- <span class="item-kicker">Restaurante de São Paulo</span> -->
+                    <h1 class="item-title" style="font-size: 1.2em">{{Car.classOfCars}}</h1>
+
+                    <div class="carousel-item-image">
+                      <img src="{{Car.pictureCar.url}}" class="item-image">
+                    </div>
+                    <div class="carousel-item-text description">
+                      <span class="item-kicker">{{Car.modelsOfCars}}</span>
+                      <h5 class="item-title">{{Car.infoOfClass}}</h5>
+                      <!-- <span class="item-kicker">{{Car.maxPassenger}} пассажира</span>
+                      <span class="item-kicker">{{Car.maxBags}} багажных места</span> -->
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+          <div class="section">
+            <div class="container">
+                <div class="content">
+                    <div class="row">
+                        <div class="title-area">
+                            <h2>{% trans "Почему мы?" %}</h2>
+                            <div class="separator separator-danger">✻</div>
+                            <p class="description">{% trans "За эти качества нас выбирают сотни клиентов по всему миру." %}</p>
+                        </div>
+                    </div>
+
+                    <div class="team">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="card card-member" style="min-height: 300px;">
+                                            <div class="content">
+                                              <div class="icon text-danger">
+                                                <i class="pe-7s-like2"></i>
+                                              </div>
+                                              <div class="description">
+                                                <h3 class="title">{% trans "Мы официальный перевозчик" %}</h3>
+                                                <!-- <p class="small-text">CEO / Co-Founder</p> -->
+                                                <p class="description">{% trans "Все наши водители и транспорт имеют лицензии и страховки для осуществления пассажирских перевозок." %}</p>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card card-member" style="min-height: 300px;">
+                                            <div class="content">
+                                              <div class="icon text-danger">
+                                                <i class="pe-7s-star"></i>
+                                              </div>
+                                              <div class="description">
+                                                <h3 class="title">{% trans "Контроль качества" %}</h3>
+                                                  <!-- <p class="small-text">Product Designer</p> -->
+                                                <p class="description">{% trans "Мы находимся в италии и лично контролируем все процессы и качество наших услуг." %}</p>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card card-member" style="min-height: 300px;">
+                                            <div class="content">
+                                              <div class="icon text-danger">
+                                                <i class="pe-7s-car"></i>
+                                              </div>
+                                              <div class="description">
+                                                <h3 class="title">{% trans "Собственный транспорт" %}</h3>
+                                                    <!-- <p class="small-text">Marketing Hacker</p> -->
+                                                <p class="description">{% trans "В отличие от других компаний, мы располагаем собственным парком автомобилей и автобусов." %}</p>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+
+    <!-- <div class="section section-our-clients-freebie">
+        <div class="container">
+            <div class="title-area">
+                <h5 class="subtitle text-gray">Here are some</h5>
+                <h2>Clients Testimonials</h2>
+                <div class="separator separator-danger">∎</div>
+            </div>
+
+            <ul class="nav nav-text" role="tablist">
+                <li class="active">
+                    <a href="#testimonial1" role="tab" data-toggle="tab">
+                        <div class="image-clients">
+                            <img alt="..." class="img-circle" src="assets/img/faces/face_5.jpg"/>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#testimonial2" role="tab" data-toggle="tab">
+                        <div class="image-clients">
+                            <img alt="..." class="img-circle" src="assets/img/faces/face_6.jpg"/>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#testimonial3" role="tab" data-toggle="tab">
+                        <div class="image-clients">
+                            <img alt="..." class="img-circle" src="assets/img/faces/face_2.jpg"/>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="testimonial1">
+                    <p class="description">
+                        And I used a period because contrary to popular belief I strongly dislike exclamation points! We no longer have to be scared of the truth feels good to be home In Roman times the artist would contemplate proportions and colors. Now there is only one important color... Green I even had the pink polo I thought I was Kanye I promise I will never let the people down. I want a better life for all!
+                    </p>
+                </div>
+                <div class="tab-pane" id="testimonial2">
+                    <p class="description">Green I even had the pink polo I thought I was Kanye I promise I will never let the people down. I want a better life for all! And I used a period because contrary to popular belief I strongly dislike exclamation points! We no longer have to be scared of the truth feels good to be home In Roman times the artist would contemplate proportions and colors. Now there is only one important color...
+                    </p>
+                </div>
+                <div class="tab-pane" id="testimonial3">
+                    <p class="description"> I used a period because contrary to popular belief I strongly dislike exclamation points! We no longer have to be scared of the truth feels good to be home In Roman times the artist would contemplate proportions and colors. The 'Gaia' team did a great work while we were collaborating. They provided a vision that was in deep connection with our needs and helped us achieve our goals.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </div> -->
+
+
+    <!-- <div class="section section-small section-get-started">
+        <div class="parallax filter">
+            <div class="image"
+                style="background-image: url('assets/img/office-1.jpeg')">
+            </div>
+            <div class="container">
+                <div class="title-area">
+                    <h2 class="text-white">Do you want to work with us?</h2>
+                    <div class="separator line-separator">♦</div>
+                    <p class="description"> We are keen on creating a second skin for anyone with a sense of style! We design our clothes having our customers in mind and we never disappoint!</p>
+                </div>
+
+                <div class="button-get-started">
+                    <a href="#gaia" class="btn btn-danger btn-fill btn-lg">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+{% endblock content %}
+
+{% block scripts %}
+<script type="text/javascript" src='{% static "js/index/owl.carousel.min.js" %}'></script>
+<script type="text/javascript" src='{% static "js/index/owl-carousel-my.js" %}'></script>
+<script>
+function takeValue(){
+  console.log(autocomplete.getPlace());
+  console.log(autocomplete2.getPlace());
+if ((autocomplete.getPlace() == undefined) || (autocomplete2.getPlace() == undefined)) {
+  if (autocomplete.getPlace() == undefined) {
+    document.getElementById('id_from_transfer').classList.add("mistake");
+    setTimeout(
+      () => document.getElementById('id_from_transfer').classList.remove("mistake"),
+      1000
+    );
+  }
+  if (autocomplete2.getPlace() == undefined) {
+    document.getElementById('id_to_transfer').classList.add("mistake");
+    setTimeout(
+      () => document.getElementById('id_to_transfer').classList.remove("mistake"),
+      1000
+    );
+  }
+  console.log(autocomplete.getPlace().place);
+  console.log(autocomplete2.getPlace().place);
+
+  return false;
+}
+else {
+  console.log(autocomplete.getPlace());
+  console.log(autocomplete2.getPlace());
+  document.getElementById('id_from_transfer_lng_id').value = autocomplete.getPlace().place;
+  document.getElementById('id_from_transfer_lng').value = autocomplete.getPlace().geometry.location;
+
+  document.getElementById('id_to_transfer_lng_id').value = autocomplete2.getPlace().place;
+  document.getElementById('id_to_transfer_lng').value = autocomplete2.getPlace().geometry.location;
+  return false;
+  }
+  return false;
+}
+function changeDir(){
+  var change = document.getElementById('id_to_transfer').value;
+  document.getElementById('id_to_transfer').value = document.getElementById('id_from_transfer').value;
+  document.getElementById('id_from_transfer').value = change;
+}
+function func(url) {
+  window.location = url+'?id_from_transfer_lng_id='+document.getElementById('id_from_transfer_lng_id').value
+  +'&'+'id_from_transfer'+'='+document.getElementById('id_from_transfer').value
+  +'&'+'id_from_transfer_lng'+'='+document.getElementById('id_from_transfer_lng').value
+  +'&'+'id_to_transfer'+'='+document.getElementById('id_to_transfer').value
+  +'&'+'id_to_transfer_lng_id'+'='+document.getElementById('id_to_transfer_lng_id').value
+  +'&'+'id_to_transfer_lng'+'='+document.getElementById('id_to_transfer_lng').value
+  ;
+  console.log(window.location)
+}
+</script>
+<!-- <script>
+function openOrders() {
+  myWin= open("/orders/");
+}
+</script> -->
+{% endblock scripts %}

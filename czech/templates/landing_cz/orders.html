@@ -1,0 +1,401 @@
+{% extends 'base_cz.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+<title>Заказ трансфера</title>
+{% endblock title %}
+
+{% block links %}
+<link href='{% static "css/gaia.css" %}' rel="stylesheet"/>
+<link href='{% static "css/orders/orders_style.css" %}' rel="stylesheet">
+<link href='{% static "css/orders/main_orders.css" %}' rel="stylesheet">
+<link href='{% static "css/orders/util_orders.css" %}' rel="stylesheet">
+<link href='{% static "css/orders/jquery-steps.css" %}' rel="stylesheet">
+<link href='{% static "css/orders/datepicker/datepicker.css" %}' rel="stylesheet">
+<link href='{% static "css/orders/datepicker/datepicker.min.css" %}' rel="stylesheet">
+<link href='{% static "css/orders/form_style/form_style.css" %}' rel="stylesheet">
+<!-- <link href='{% static "css/bootstrap2.css" %}' rel="stylesheet" /> -->
+
+{% endblock links %}
+
+
+{% block content %}
+<div class="section section-header"  id="top1">
+    <div class="parallax filter filter-color-red" style="height: 22vh;">
+      <div class="image" style="background-image: url({% static 'img/orders/header.jpeg' %}); background-position: center bottom;">
+      </div>
+      <div class="container">
+          <div class="content">
+            <div class="title-area" style="margin-bottom: 0px; margin-top: 10%;">
+
+              <!-- <h3 class="title-modern">Информация о трансфере</h3> -->
+              <!-- <div class="separator line-separator">♦</div> -->
+              <!-- <h1 class="title-modern">Информация о трансфере</h1> -->
+            </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="section" style="padding-top:0px;">
+  <div class="container">
+    <div class="content_orders">
+      <div class="wrap-contact100 col-md-12">
+        <div class="content_in_box row flex-md-row d-flex flex-sm-column-reverse">
+          <form class="col-md-7" method="post" action="{% url 'orders' %}" >
+            {% csrf_token %}
+            <div class="step-app main_orders" id="steps">
+              <ul class="step-steps">
+                <li><a href="#step1"></a></li>
+                <li><a href="#step2"></a></li>
+                <li><a href="#step3"></a></li>
+              </ul>
+              <div class="step-content">
+                <div class="step-tab-panel contact100-form validate-form" id="step1">
+                  <div class="wrapper_form" style="margin-left: -40px;">
+                    <h3 style="font-weight: bold;">
+                      <span class="pnum">1</span>
+                      {% trans "Информация о трансфере" %}
+                    </h3>
+                  </div>
+                    <div id="name">
+
+                    </div>
+                      <div class="wrap-input100 validate-input" data-validate="Name is required">
+                        <span class="label-input100">{% trans "Место отправления:" %}</span>
+                        <!-- <input class="input100" type="text" name="pointfrom" id="pointfrom" placeholder="Откуда"> -->
+                        <input type="hidden" name="" value="" name="id_from_transfer_lng" id="id_from_transfer_lng">
+                        <input type="hidden" name="" value="" name="id_from_transfer_lng_id" id="id_from_transfer_lng_id">
+                        {{form.from_transfer}}
+                        <span class="focus-input100"></span>
+                      </div>
+                      <div class="wrap-input100 validate-input" data-validate="Name is required" style="display: flex;">
+                        <span class="label-input100">{% trans "Дата отправления и время:" %}</span>
+                        <!-- <input class="input100" type="date" name="name"  data-provide="datepicker" style="padding-left: 26px;"> -->
+                        {{form.time_from}}
+                        <!-- <span class="focus-input100" style="width: 50%"></span> -->
+                        <!-- <input class="input100 date" type="time" name="name"  style="margin-left: 5px; padding-left: 60px;"> -->
+                        <span class="focus-input100" style="width: 30%"></span>
+                      </div>
+                      <div class="wrap-input100 validate-input" data-validate="Name is required">
+                        <span class="label-input100">{% trans "Место прибытия:" %}</span>
+                        <!-- <input class="input100" type="text" name="pointto" id="pointto" placeholder="Куда"> -->
+                        <input type="hidden" name="" value="" name="id_to_transfer_lng" id="id_to_transfer_lng">
+                        <input type="hidden" name="" value="" name="id_to_transfer_lng_id" id="id_to_transfer_lng_id">
+                        {{form.to_transfer}}
+                        <span class="focus-input100"></span>
+                      </div>
+
+                      <div class="wrap-input100 validate-input input_phone" data-validate="Name is required" style="width: 45%">
+                        <span class="label-input100">{% trans "Число пассажиров:" %}</span>
+                          <!-- <input class="input100" type="text" name="name" placeholder="колво"> -->
+                          <div class="quantity">
+                            {{form.passenger}}
+                          </div>
+                        <span class="focus-input100"></span>
+                      </div>
+
+
+                    <div class="wrap-input100 validate-input input_phone" data-validate="Name is required">
+                      <span class="label-input100">{% trans "Обратный трансфер:" %}</span>
+                      <!-- <input class="input100" type="checkbox" name="return_transfer" id="return_transfer" style="width: 10%;" onchange = 'showOrHide("return_transfer", "return_transfer_div");'> -->
+                      {{form.return_transfer}}
+                      <span class="label-input100" style="left:0px;
+                      width: 70px; position: inherit;">{% trans "Есть дети:" %}</span>
+                      <!-- <input class="input100" type="checkbox" name="name" style="width: 30px; margin-left: 10px; padding-left: 60px;" id="have_childrend" onchange = 'showOrHide("have_childrend", "have_childrend_div");'> -->
+                      {{form.children}}
+                    </div>
+                    <div class="wrap-input100 validate-input" id="return_transfer_div" data-validate="Name is required" style="display: none;">
+                      <span class="label-input100">{% trans "Дата отправления и время:" %}</span>
+                      <!-- <input class="input100" type="date" name="name"  data-provide="datepicker" style="padding-left: 26px;">
+                      <span class="focus-input100" style="width: 50%"></span>
+                      <input class="input100 date" type="time" name="name"  style="margin-left: 5px; padding-left: 60px;"> -->
+                      {{form.time_return_transfer}}
+                      <span class="focus-input100" style="width: 30%"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input" id="have_children_div" data-validate="Name is required" style="display: none; flex-direction: column;">
+                      <div class="wrap-input100 input_phone" style="margin-bottom: 30px; width: 100%;">
+                        <span class="label-input100">{% trans "В том числе детей:" %}</span>
+                        <!-- <input class="input100" type="text" name="name" placeholder="колво"> -->
+                        <div class="quantity">
+                          {{form.children_passenger}}
+                        </div>
+                      </div>
+                      <div class="wrap-input100 input_phone" style="display: flex; flex-direction: row; justify-content: space-around;">
+                        <span class="label-input100">{% trans "Выберите детские кресла:" %}</span>
+                        <div class="children-box">
+                          <span class="children-lable">0-13 {% trans "Кг" %}</span>
+                          <div class="quantity">
+                            {{form.chair_small}}
+                          </div>
+                        </div>
+                        <div class="children-box">
+                          <span class="children-lable">9-18 {% trans "Кг" %}</span>
+                          <div class="quantity">
+                            {{form.chair_middle}}
+                          </div>
+                        </div>
+                        <div class="children-box">
+                          <span class="children-lable">15-36 {% trans "Кг" %}</span>
+                          <div class="quantity">
+                            {{form.chair_large}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="step-tab-panel" id="step2">
+                  <div class="wrapper_form">
+                    <h3 style="font-weight: bold;">
+                      <span class="pnum">2</span>
+                      {% trans "Выберете класс трансфера" %}
+                    </h3>
+                  </div>
+                  {{form.class_transport}}
+                  {% for Car in car_class %}
+                      <button type="button" class="choose_car" onclick="selectEdit(this.id)" id="{{Car.id}}">
+                        <div class="image_car">
+                          <div style="height: 85px;  width: 212px;">
+                            <img src="{{Car.pictureCar.url}}" style="height: 85px;  width: 212px;">
+                          </div>
+                          <p class="models_car">{{Car.modelsOfCars}}</p>
+                        </div>
+                        <div class="info_car">
+                          <h3 class="text-bold">{{Car.classOfCars}}</h3>
+                          <h6 class="info_class">{{Car.infoOfClass}}</h6>
+                          <div class="car_capacity">
+                            <div class="car_capacity_items"><span class="fa fa-user"></span><h6>{{Car.maxPassenger}} {% trans "пассажира" %}</h6></div>
+                            <div class="car_capacity_items"><span class="fa fa-suitcase "></span><h6>{{Car.maxBags}} {% trans "багажных места" %}</h6></div>
+                          </div>
+                        </div>
+                        <div class="price">
+                          <h5 id="total{{Car.id}}"></h5>
+                          <p style="display: none;"><span id="price_km{{Car.id}}">{{Car.priceOfTransfer}}</span></p>
+                        </div>
+                      </button>
+                  {% endfor %}
+
+                </div>
+              	<div class="step-tab-panel contact100-form validate-form" id="step3">
+                  <div class="wrapper_form" style="margin-left: -40px;">
+                    <h3 style="font-weight: bold;">
+                      <span class="pnum">3</span>
+                      {% trans "Ваши контакты" %}
+                    </h3>
+                  </div>
+
+              				<div class="wrap-input100 validate-input" data-validate="Name is required">
+              					<span class="label-input100">{% trans "Контакты пассажира:" %}</span>
+              					<!-- <input class="input100" type="text" name="name" placeholder="Имя и фамилия*"> -->
+                        {{form.name}}
+                        <span class="focus-input100"></span>
+              				</div>
+
+              				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+              					<!-- <span class="label-input100">Email:</span> -->
+              					<!-- <input class="input100" type="text" name="email" placeholder="Email*"> -->
+                        {{form.email}}
+              					<span class="focus-input100"></span>
+              				</div>
+
+              				<div class="wrap-input100 validate-input" data-validate="Phone is required">
+              					<!-- <span class="label-input100">Телефон:</span> -->
+              					<!-- <input class="input100" type="text" name="phone" placeholder="Телефон*"> -->
+                        {{form.phone}}
+              					<span class="focus-input100"></span>
+              				</div>
+
+              				<div class="wrap-input100 validate-input" data-validate = "Message is required">
+              					<span class="label-input100">{% trans "Комментарий:" %}</span>
+              					<!-- <textarea class="input100" name="message" placeholder="Ваш комментарий..."></textarea> -->
+                        {{form.comment}}
+              					<span class="focus-input100"></span>
+              				</div>
+                      <div class="checkbox_rules" data-validate = "Message is required">
+                        <label class="" for="politics"
+                        style="padding: 0; position: relative; width: auto; text-align: left;">{% trans "Я согласен с условиями" %} <a class="link" href="{% url "confidential" %}" target="_blank">{% trans "Политики конфиденциальности" %}</a> {% trans "и" %}
+                        <a class="link" href="{% url "oferta" %}" target="_blank">{% trans "Оферты" %}</a>
+                          *
+                        </label>
+                        <input id="politics" name="politics" type="checkbox" onchange="showOrHide('politics', 'finish_btn')" style="height: 30px; width: 42px;">
+                            <!-- <span class="checkmark"></span> -->
+
+              				</div>
+              	</div>
+              </div>
+              <div class="btn-changes step-footer">
+                    <button type="button" class="contact100-form-btn btn-left" data-direction="prev" style="padding: 0;">
+                      <a href="#top1" style="padding: 17px 17px;"><span>
+                        <i class="fa fa-long-arrow-left m-l-7" aria-hidden="true" style="margin-right: 7px; margin-left: 0;"></i>
+                        {% trans "Назад" %}
+                      </span></a>
+                    </button>
+                    <button href="#top1" type="button" class="contact100-form-btn btn-right" data-direction="next" id="route_draw" style="padding: 0;">
+                      <a href="#top1" style="padding: 17px 17px;"><span>
+                        {% trans "Продолжить" %}
+                        <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                    </span></a>
+                    </button>
+
+                    <button class="contact100-form-btn btn-right" data-direction="finish" type="submit" id="finish_btn" style="display: none !important;" onclick="ym(56779309, 'reachGoal', 'order'); return true;">
+                      <span>
+                        {% trans "Оформить" %}
+                        <i class="fa fa-cog m-l-7 fa-spin" aria-hidden="true"></i>
+                      </span>
+                    </button>
+
+              </div>
+            </div>
+            <button class="contact100-form-btn" type="submit" id="main_button">
+              <span>
+
+                <i class="fa fa-cog m-l-7 fa-spin" aria-hidden="true"></i>
+              </span>
+            </button>
+          </form>
+          <div class="right-panel col-md-5">
+            <div id="map" class="mixplat__operators">
+            </div>
+            <div class="finishOrder" style="display: none;">
+              <!-- <input id="from_transfer_finish" style="height: 100%; width: 100%;"></input> -->
+              <p><span id="total"></span></p>
+              <div class="finish-info-from_transfer">
+
+              </div>
+              <div class="finish-info-phone">
+
+              </div>
+              <div>
+                <span class="finish-info-class_transport"></span>
+              </div>
+              <div class="finish-info-name">
+
+              </div>
+              <div class="finish-info-email">
+
+              </div>
+              <div class="finish-info-phone">
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+  		</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- тесты -->
+
+<!-- конец тестов -->
+
+{% endblock content %}
+
+{% block scripts %}
+
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+<script type="text/javascript" src='{% static "js/orders/datepicker/datepicker.js" %}'></script>
+<script type="text/javascript" src='{% static "js/orders/datepicker/datepicker.min.js" %}'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+<script type="text/javascript" src='{% static "js/orders/jquery-steps.js" %}'></script>
+<!-- <script type="text/javascript" src='{% static "js/orders/jquery.steps.js" %}'></script> -->
+<script type="text/javascript" src='{% static "js/orders/inputmask/inputmask.min.js" %}'></script>
+<script type="text/javascript" src='{% static "js/orders/inputmask/jquery.inputmask.min.js" %}'></script>
+<script type="text/javascript" src='{% static "js/orders/orders_js.js" %}'></script>
+<script type="text/javascript" src='{% static "js/orders/form_js.js" %}'></script>
+<script>
+    var urlParams;
+    (window.onpopstate = function () {
+      var match,
+          pl     = /\+/g,  // Regex for replacing addition symbol with a space
+          search = /([^&=]+)=?([^&]*)/g,
+          decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+          query  = window.location.search.substring(1);
+
+      urlParams = {};
+      while (match = search.exec(query))
+         urlParams[decode(match[1])] = decode(match[2]);
+    })();
+    document.getElementById("id_from_transfer").value = urlParams["id_from_transfer"];
+    console.log(document.getElementById("id_from_transfer"));
+    document.getElementById("id_to_transfer").value = urlParams["id_to_transfer"];
+    document.getElementById("id_from_transfer_lng").value = urlParams["id_from_transfer_lng"];
+    document.getElementById("id_from_transfer_lng_id").value = urlParams["id_from_transfer_lng_id"];
+    document.getElementById("id_to_transfer_lng").value = urlParams["id_to_transfer_lng"];
+    document.getElementById("id_to_transfer_lng_id").value = urlParams["id_to_transfer_lng_id"];
+
+
+    // var data = location.search.substring(1).split('&'), s = '';
+    // console.log(data);
+    // while(d = data.shift()) {
+    //     console.log(d);
+    //     d = d.split('=');
+    //     console.log(d);
+    //     document.getElementById(d[0]).value = d[1];
+    //     s += 'Key: ' + d[0] + ', value: ' + d[1] + '<br>';
+    // }
+
+    // var searchString = window.location.search.substring(1),
+    //   i, val, params = searchString.split("&");
+    //
+    // for (i=0;i<params.length;i++) {
+    //   val = params[i].split("=");
+    //   if (val[0] == paramName) {
+    //     return val[1];
+    //   }
+    // }
+
+    // document.getElementById('name').innerHTML = s;
+    // console.log(s);
+</script>
+<script type="text/javascript">
+function calculatePrice(){
+  let i = 1;
+  console.log({{last_car}});
+  while(i <= {{last_car}})
+  {
+    var s = String(document.getElementById('price_km' + i).innerHTML);
+    total = Number(document.getElementById('total').innerHTML);
+    s = parseFloat(s.replace(',','.').replace(' ',''))
+    console.log(s);
+    console.log(total);
+    console.log(s * total);
+    if ((i == 1) && (Math.ceil(Number(s * total)) < 88 ) ) {
+      document.getElementById('total' + i).innerHTML ='От ' + 88 + '€';
+    }
+    else {
+      if ((i == 2) && (Math.ceil(Number(s * total)) < 117 ) ) {
+        document.getElementById('total' + i).innerHTML ='От ' + 117 + '€';
+      }
+      else {
+        if ((i == 3) && (Math.ceil(Number(s * total)) < 260 ) ) {
+          document.getElementById('total' + i).innerHTML ='От ' + 260 + '€';
+        }
+        else {
+          if ((i == 4) && (Math.ceil(Number(s * total)) < 117 ) ) {
+            document.getElementById('total' + i).innerHTML ='От ' + 117 + '€';
+          }
+          else {
+            if ((i == 5) && (Math.ceil(Number(s * total)) < 325 ) ) {
+              document.getElementById('total' + i).innerHTML ='От ' + 325 + '€';
+            }
+            else {
+              document.getElementById('total' + i).innerHTML ='От ' + Math.ceil(Number(s * total)) + '€';
+            }
+          }
+        }
+      }
+    }
+
+    i++;
+  }
+}
+</script>
+
+{% endblock scripts %}

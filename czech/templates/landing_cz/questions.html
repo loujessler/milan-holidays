@@ -1,0 +1,81 @@
+{% extends 'base_cz.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+<title>Чатсые вопросы</title>
+{% endblock title %}
+
+{% block links %}
+<!-- <description>Ответы на частые вопросы.
+  Здесь собраны самые частые вопросы, возникающие при заказе трансфера на нашем сайте.
+  Если вы не нашли ответа на свой вопрос, обратитесь к нашим консультантам по телефону или email.
+</description> -->
+<link href='{% static "css/gaia.css" %}' rel="stylesheet"/>
+<link href='{% static "css/questions/questions.css" %}' rel="stylesheet"/>
+
+{% endblock links %}
+
+{% block content %}
+<div class="section section-header">
+    <div class="parallax filter filter-color-red" style="height: 35vh;">
+      <div class="image" style="background-image: url({% static 'img/questions/header.jpg' %});">
+      </div>
+      <div class="container">
+          <div class="content">
+            <div class="title-area" style="margin-bottom: -20px;">
+              <h1 class="title-modern">{% trans "Частые вопросы" %}</h1>
+              <div class="separator line-separator">♦</div>
+            </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="container">
+    <div class="content">
+      <div class="row">
+        <div class="col-md-12 col-md-offset-2">
+          <div class="row">
+            {% for Questions in questions %}
+            <div class="row ">
+              <div class="col-md-8 blockQuestion" style="display: flex; align-items: center;">
+                <div class="col-md-1">
+                  <button type="button" onclick="selectEdit(this.id)" id="{{Questions.id}}"
+                  class="btnq">
+                    <div class="icon text-danger">
+                      <i class="pe-7s-angle-down" id="config-btn1-{{Questions.id}}"></i>
+                      <i class="pe-7s-angle-up" id="config-btn2-{{Questions.id}}" style="display: none;"></i>
+                    </div>
+                  </button>
+                </div>
+                <div class="col-md-11">
+                  <h3>{{Questions.question}}</h3>
+                </div>
+              </div>
+              <div class="col-md-8 col-sm-12 col-xs-12 blockAnswer" id="config-btn-{{Questions.id}}" style="display: none;">
+                <div class="col-md-11 col-md-offset-1 col-sm-11 col-sm-offset-1 col-xs-11 col-xs-offset-1">
+                  <h4 class="description">
+                    {{Questions.answer}}
+                  </h4>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src='{% static "js/questions/questions.js" %}'></script>
+{% endblock scripts %}

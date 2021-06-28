@@ -1,0 +1,126 @@
+{% extends 'base_cz.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+<title>Детали заказа</title>
+{% endblock title %}
+
+{% block links %}
+<link href='{% static "css/gaia.css" %}' rel="stylesheet"/>
+<link href='{% static "css/completeOrder/completeOrder.css" %}' rel="stylesheet">
+<link href='{% static "css/orders/orders_style.css" %}' rel="stylesheet">
+<!-- <link href='{% static "css/orders/main_orders.css" %}' rel="stylesheet"> -->
+{% endblock links %}
+
+{% block content %}
+<div class="section section-header">
+    <div class="parallax filter filter-color-red" style="height: 20vh;">
+      <div class="image" style="background-image: url({% static 'img/questions/header.jpg' %});">
+      </div>
+      <div class="container">
+          <div class="content">
+            <div class="title-area" style="margin-bottom: -30px;">
+              <h1 class="title-modern">{% trans "Детали заказа" %}</h1>
+            </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="title-area">
+          <h2>{% trans "Ваш заказ № " %}{{last_order.id}}</h2>
+          <h4>{% trans "создан: " %}{{last_order.created}}</h4>
+          <div class="separator separator-danger">✻</div>
+          <p class="description">{% trans "Наш менеджер скоро свяжется с Вами." %}<br>
+
+          </p>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-7 col-md-6  col-xs-offset-0 col-sm-offset-3 col-md-offset-4">
+        <div class="card-member" style="min-height: 300px;">
+            <div class="content">
+              <div class="icon text-danger">
+                <!-- <i class="pe-7s-like2"></i> -->
+              </div>
+              <div class="wrap-input100">
+                <span class="label-input100">{% trans "Ваше имя:" %}</span>
+                <p>{{last_order.name}}</p>
+              </div>
+              <div class="wrap-input100">
+                <span class="label-input100">{% trans "Ваш телефон:" %}</span>
+                <p>{{last_order.phone}}</p>
+              </div>
+              <div class="wrap-input100">
+                <span class="label-input100">{% trans "Ваш email:" %}</span>
+                <p>{{last_order.email}}</p>
+              </div>
+              <div class="wrap-input100">
+                <span class="label-input100">{% trans "Откуда:" %}</span>
+                <p>{{last_order.from_transfer}}</p>
+              </div>
+              <div class="wrap-input100">
+                <span class="label-input100">{% trans "Время отъезда:" %}</span>
+                <p>{{last_order.time_from}}</p>
+              </div>
+              <div class="wrap-input100">
+                <span class="label-input100">{% trans "Куда:" %}</span>
+                <p>{{last_order.to_transfer}}</p>
+              </div>
+              {% if last_order.return_transfer != False %}
+              <div class="wrap-input100">
+                <span class="label-input100">{% trans "Время выезда:" %}</span>
+                <p>{{last_order.time_return_transfer}}</p>
+              </div>
+              {% endif %}
+              <div class="wrap-input100">
+                <span class="label-input100">{% trans "Класс:" %}</span>
+                <p>{{last_order.class_transport}}</p>
+              </div>
+              <div class="wrap-input100" style="width: 60%; display: flex; flex-direction: row; justify-content: space-around;">
+                <span class="label-input100">{% trans "Пассажиров:" %}</span>
+                <p>{{last_order.passenger}}</p>
+                {% if last_order.children != False %}
+                <span class="label-input100"  style="left: 60px">{% trans "Детей:" %}</span>
+                <p>{{last_order.children_passenger}}</p>
+                {% endif %}
+              </div>
+              {% if last_order.children != False %}
+              <div class="wrap-input100" style="width: 60%; display: flex; flex-direction: row; justify-content: space-around;">
+                <span class="label-input100">0-13{% trans "Кг:" %}</span>
+                <p>{{last_order.chair_small}}</p>
+                <span class="label-input100" style="left: 0px">9-18{% trans "Кг:" %}</span>
+                <p>{{last_order.chair_middle}}</p>
+                <span class="label-input100" style="left: 110px">15-36{% trans "Кг:" %}</span>
+                <p>{{last_order.chair_large}}</p>
+              </div>
+              {% endif %}
+              {% if last_order.comment != "" %}
+              <div class="wrap-input100">
+                <span class="label-input100">{% trans "Ваши пожелания:" %}</span>
+                <p>{{last_order.comment}}</p>
+              </div>
+              {% endif %}
+            </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6  col-md-offset-3">
+        <a href="{% url "index" %}">На главную</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+{% endblock scripts %}

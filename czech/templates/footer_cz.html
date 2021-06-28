@@ -1,0 +1,98 @@
+{% load i18n %}
+<footer class="footer footer-big footer-color-black" data-color="black">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-sm-3">
+                <div class="info">
+                    <h5 class="title">{% trans "Компания" %}</h5>
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="{% url "index_cz" %}">{% trans "Домой" %}</a></li>
+                            <li>
+                                <a href="{% url "orders_cz" %}">{% trans "Заказать трансфер" %}</a>
+                            </li>
+                            <!-- <li>
+                                <a href="#">{% trans "Галерея" %}</a>
+                            </li> -->
+                            <li>
+                                <a href="{% url "blog" %}">{% trans "Блог" %}</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-3  col-md-offset-1 col-sm-offset-0">
+                <div class="info">
+                    <h5 class="title">{% trans "Помощь" %}</h5>
+                     <nav>
+                        <ul>
+                            <!-- <li>
+                                <a href="#">{% trans "Свяжитесь с нами" %}</a>
+                            </li> -->
+                            <li>
+                                <a href="{% url "questions_cz" %}">{% trans "Частые вопросы" %}</a>
+                            </li>
+                            <!-- <li>
+                                <a href="#">{% trans "Возврат средств" %}</a>
+                            </li> -->
+                            <!-- <li>
+                                <a href="#">{% trans "Отзывы" %}</a>
+                            </li> -->
+                            <li>
+                                <a href="{% url "confidential_cz" %}">{% trans "Политика конфиденциальности" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url "oferta_cz" %}">{% trans "Оферта" %}</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3  col-md-offset-4 col-sm-offset-3">
+                <div class="info">
+                    <h5 class="title">{% trans "Подписывайтесь на нас" %}</h5>
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="{% url "telegram" %}" class="btn btn-social btn-facebook btn-simple" target="_blank">
+                                    <i class="fa fa-telegram"></i> Telegram
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url "instagram" %}" class="btn btn-social btn-dribbble btn-simple" target="_blank">
+                                    <i class="fa fa-instagram"></i> instagram
+                                </a>
+                            </li>
+                            <!-- <li>
+                                <a href="#" class="btn btn-social btn-twitter btn-simple">
+                                    <i class="fa fa-twitter"></i> Twitter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn btn-social btn-reddit btn-simple">
+                                    <i class="fa fa-google-plus-square"></i> Google+
+                                </a>
+                            </li> -->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row">
+          <div class="col-md-4 col-sm-5">
+              <div class="info">
+                <h5 class="title">{% trans "Контакты" %}</h5>
+                <p style="color: #777777; opacity: .7; font-size: 14px; margin-bottom: 3px;">ИП Дьяков Дмитрий Игоревич</p>
+                <p style="color: #777777; opacity: .7; font-size: 14px; margin-bottom: 3px;">ИНН 770203961250</p>
+              </div>
+          </div>
+        </div> -->
+        <hr>
+        <div class="copyright">
+          ИП «Дьяков Дмитрий Игоревич» ИНН 770203961250<br>
+
+             © Milan Holidays, Moscow 2019-<script> document.write(new Date().getFullYear()) </script>
+        </div>
+    </div>
+</footer>

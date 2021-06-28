@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block links %}
+<link href='{% static "css/gaia.css" %}' rel="stylesheet"/>
+<link href='{% static "css/blog/style.css" %}' rel="stylesheet"/>
+
+{% endblock links %}
+
+{% block content %}
+<div class="section section-header">
+    <div class="parallax filter filter-color-red" style="height: 25vh;">
+      <div class="image header-1" style="transform: translate3d(0px, 0px, 0px);">
+      </div>
+      <div class="container">
+          <div class="content">
+            <div class="title-area" style="margin-bottom: -20px;">
+              <p>Milan Holidays</p>
+              <h1 class="title-modern">Блог</h1>
+              <div class="separator line-separator">♦</div>
+            </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="container">
+    <div class="content">
+505
+
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src='{% static "js/questions/questions.js" %}'></script>
+{% endblock scripts %}
